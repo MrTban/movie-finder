@@ -38,13 +38,19 @@ function useSearch() {
 }
 
 function App() {
+	const [sort, setSort] = useState(false)
+
 	const { search, updateSearch, error } = useSearch()
 
-	const { movies, getMovies } = useMovies({ search })
+	const { movies, getMovies, loading } = useMovies({ search, sort })
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		getMovies()
+	}
+
+	const handleSort = () => {
+		setSort(!sort)
 	}
 
 	const handleChange = (e) => {
@@ -62,13 +68,15 @@ function App() {
 						name='query'
 						placeholder='Avengers, Star Wars, Fast & Furious...'
 					/>
-					<button type='submit'>Search</button>
+					<input type='checkbox' onChange={handleSort} checked={sort} />
+					<button type='submit' className='bg-[#161f27]'>
+						Search
+					</button>
 				</form>
 				{error && <p className='text-red-600'>{error}</p>}
 			</header>
-
-			<main className='flex justify-center w-full'>
-				<Movies movies={movies} />
+			<main className='flex justify-center w-full mt-8'>
+				{loading ? <p>Loading...</p> : <Movies movies={movies} />}
 			</main>
 		</div>
 	)

@@ -1,11 +1,11 @@
 const ListOfMovies = ({ movies }) => {
 	return (
-		<ul>
+		<ul className='grid w-full grid-cols-auto list-none m-0 p-0 gap-8'>
 			{movies.map((movie) => (
-				<li key={movie.id}>
-					<h3>{movie.title}</h3>
-					<h3>{movie.year}</h3>
-					<img src={movie.poster} alt={movie.title} />
+				<li key={movie.id} className='text-center'>
+					<h3 className='m-0'>{movie.title}</h3>
+					<p className='m-0'>{movie.year}</p>
+					<img className='rounded-lg my-4' src={movie.poster} alt={movie.title} />
 				</li>
 			))}
 		</ul>
@@ -13,7 +13,7 @@ const ListOfMovies = ({ movies }) => {
 }
 
 const NoMoviesResults = () => {
-	return <p>No movies found</p>
+	return <h2>No movies found</h2>
 }
 
 export const Movies = ({ movies }) => {

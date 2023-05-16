@@ -46,7 +46,7 @@ function App() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		getMovies()
+		getMovies({ search })
 	}
 
 	const handleSort = () => {
